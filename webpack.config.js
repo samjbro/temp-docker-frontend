@@ -28,6 +28,7 @@ module.exports = {
     })
   ],
   devServer: {
+    host: 'frontend',
     contentBase: 'public/',
     proxy: {
       '/api': {
