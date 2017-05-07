@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 
+console.log(' >>>>>>>>> Will use backend URL:', process.env.BACKEND_URL)
+
 module.exports = {
   entry: './src/app.jsx',
   resolve: {
@@ -31,7 +33,7 @@ module.exports = {
     contentBase: 'public/',
     proxy: {
       '/api': {
-        target: process.env.BACKEND_URL | 'http://localhost:3001/',
+        target: process.env.BACKEND_URL,
         pathRewrite: { '^/api': '' }
       }
     }
