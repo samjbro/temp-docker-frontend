@@ -28,7 +28,9 @@ module.exports = {
     })
   ],
   devServer: {
+    inline: true,
     host: 'frontend',
+    port: '3000',
     contentBase: 'public/',
     proxy: {
       '/api': {
