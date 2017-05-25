@@ -28,3 +28,5 @@ class UsersList extends React.Component {
 export default fetchingData({
   users: () => get('api/users')
 })(UsersList)
+
+export const UserListComponent = UsersList
