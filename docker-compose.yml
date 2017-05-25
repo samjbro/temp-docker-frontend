@@ -1,0 +1,32 @@
+
+mongo:
+  image: mongo
+  ports:
+    - "27018:27017"
+  command: "--smallfiles --logpath=/dev/null"
+backend:
+  image: jfernandes/e2e-backend
+  ports:
+    - "3001:3001"
+  links:
+    - mongo
+  environment: 
+    MONGO_URL: 'mongodb://mongo/docker-e2e'
+frontend:
+  build: .
+  ports:
+    - "3000:3000"
+  links:
+    - backend
+  environment: 
+    BACKEND_URL: 'http://backend:3001/'
+tests:
+  image: jfernandes/e2e-backend
+  links:
+    - frontend
+    - mongo
+  environment:
+    - CODECEPT_URL=http://frontend:3000
+    - MONGO_URL=mongodb://mongo/docker-e2e
+  volumes:
+    - /tmp/e2e-output:/app/output
