@@ -21,7 +21,7 @@ frontend:
   environment: 
     BACKEND_URL: 'http://backend:3001/'
 tests:
-  image: jfernandes/e2e-backend
+  image: jfernandes/e2e-tests
   links:
     - frontend
     - mongo
